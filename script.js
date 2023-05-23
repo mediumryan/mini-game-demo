@@ -6,6 +6,10 @@ const restart = document.getElementById('restart_btn');
 const modal = document.querySelector('.modal');
 const modalP = document.querySelector('.modal_p');
 
+// 전역변수
+var counterNum = 10;
+var failCounter = 2;
+
 // 재시작 버튼 핸들러
 function handleRestart() {
   restart.addEventListener('click', ()=> {
@@ -13,8 +17,15 @@ function handleRestart() {
   handleStartBtn();
   });
 }
+// 게임 실패 시 모달창 핸들러
+function fail(timer) {
+  clearInterval(timer);
+  modalP.innerText = 'You Lost 💩';
+  modal.style.display = 'flex';
+  handleRestart();
+}
+
 // 카운터 핸들러
-var counterNum = 10; // 전역변수임
 function minusCount() {
   if(counterNum > 0) {
     counterNum--;
@@ -25,7 +36,6 @@ function minusCount() {
     handleRestart();
   }
 }
-
 // 벌레 당근 위치 무작위 지정
 function getRandomPosition(element) {
   // 컨테이터 넓이, 높이 구하기
@@ -46,6 +56,12 @@ function makeBug() {
   bug.src = './../images/bug.png';
   container.appendChild(bug);
   getRandomPosition(bug);
+  // 벌레 클릭 시 게임 오버
+  bug.addEventListener('click', () => {
+    if(failCounter > 0) {
+      failCounter--;
+    }
+  })
 }
 // 당근 만들기
 function makeCarrot() {
@@ -69,7 +85,8 @@ function handleStartBtn() {
     makeCarrot();
     makeBug();
   }
-  // 카운터 10으로 지정
+  // 카운터 10, 경고 2로 지정
+  failCounter = 2;
   counterNum = 10;
   counter.innerHTML = counterNum;
   // 타이머 숫자 00:10 시작
@@ -80,17 +97,16 @@ function handleStartBtn() {
     time = String(time).padStart(2, '0');
     timer.innerText = `00:${time}`;
     if(time < 1) {
-      // ** 타이머가 숫자가 00:00이 되면 **
-      // 실패 모달 띄우기
-      // 재시작 버튼 -- 시작버튼 재활용(함수)
-      clearInterval(handleTimer);
-      modalP.innerText = 'You Lost 💩';
-      modal.style.display = 'flex';
-      handleRestart();
+      // ** 타이머가 숫자가 00:00이 되면 실패 모달 띄우기 **
+      fail(handleTimer);
     }
     // 당근 모두 클릭 성공했을 시, 타이머 중지.
     if(counterNum == 0) {
       clearInterval(handleTimer);
+    }
+    // 경고 카운터가 0 이하일 경우 게임 실패.
+    if(failCounter == 0) {
+      fail(handleTimer);
     }
   }, 1000);
 }
