@@ -6,6 +6,26 @@ const restart = document.getElementById('restart_btn');
 const modal = document.querySelector('.modal');
 const modalP = document.querySelector('.modal_p');
 
+// 재시작 버튼 핸들러
+function handleRestart() {
+  restart.addEventListener('click', ()=> {
+  modal.style.display = 'none';
+  handleStartBtn();
+  });
+}
+// 카운터 핸들러
+var counterNum = 10; // 전역변수임
+function minusCount() {
+  if(counterNum > 0) {
+    counterNum--;
+    counter.innerHTML = counterNum;
+  }
+  if(counterNum == 0) {
+    modal.style.display = 'flex';
+    handleRestart();
+  }
+}
+
 // 벌레 당근 위치 무작위 지정
 function getRandomPosition(element) {
   // 컨테이터 넓이, 높이 구하기
@@ -19,15 +39,13 @@ function getRandomPosition(element) {
   // 컨테이너 내부에 당근,벌레 위치 임의 설정
   element.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
-
-
 // 벌레 만들기
 function makeBug() {
   const bug = document.createElement('img');
   bug.classList.add('bug');
   bug.src = './../images/bug.png';
   container.appendChild(bug);
-  getRandomPosition(bug)
+  getRandomPosition(bug);
 }
 // 당근 만들기
 function makeCarrot() {
@@ -38,7 +56,7 @@ function makeCarrot() {
   getRandomPosition(carrot);
   // 당근 클릭 성공 시 당근 제거 및 카운트 감소
   carrot.addEventListener('click',(e) => {
-    console.dir(e.target);
+    minusCount();
     e.target.remove();
   })
 }
@@ -52,7 +70,7 @@ function handleStartBtn() {
     makeBug();
   }
   // 카운터 10으로 지정
-  var counterNum = 10;
+  counterNum = 10;
   counter.innerHTML = counterNum;
   // 타이머 숫자 00:10 시작
   timer.innerText = `00:${time}`;
@@ -61,17 +79,18 @@ function handleStartBtn() {
     time--
     time = String(time).padStart(2, '0');
     timer.innerText = `00:${time}`;
-    if(time < 9) {
+    if(time < 1) {
       // ** 타이머가 숫자가 00:00이 되면 **
       // 실패 모달 띄우기
       // 재시작 버튼 -- 시작버튼 재활용(함수)
       clearInterval(handleTimer);
       modalP.innerText = 'You Lost 💩';
       modal.style.display = 'flex';
-      restart.addEventListener('click', ()=> {
-        modal.style.display = 'none';
-        handleStartBtn();
-      });
+      handleRestart();
+    }
+    // 당근 모두 클릭 성공했을 시, 타이머 중지.
+    if(counterNum == 0) {
+      clearInterval(handleTimer);
     }
   }, 1000);
 }
