@@ -20,6 +20,8 @@ let started = false;
 let score = 0;
 let timer = undefined;
 
+field.addEventListener('click', onFieldClick);
+
 // 게임 버튼 핸들러
 function handleGameBtn() {
   if(started) {
@@ -27,10 +29,15 @@ function handleGameBtn() {
   } else {
     startGame();
   }
-  started = !started;
 }
 
+popUpRefresh.addEventListener('click', () => {
+  startGame();
+  hidePopUp();
+});
+
 function startGame() {
+  started = true;
   initGame();
   showStopButton();
   showTimerAndScore();
@@ -38,13 +45,21 @@ function startGame() {
 }
 
 function stopGame() {
+  started = false;
   stopGameTimer();
   hideGameButton();
   showPopUp('Replay? 😐');
 }
 
+function finishGame(win) {
+  started = false;
+  stopGameTimer();
+  hideGameButton();
+  showPopUp(win ? 'YOU WON 🥳' : 'YOU LOST 💩');
+}
+
 function showStopButton() {
-  const icon = gameBtn.querySelector('.fa-play');
+  const icon = gameBtn.querySelector('.fa-solid');
   icon.classList.add('fa-stop');
   icon.classList.remove('fa-play');
 }
@@ -60,6 +75,7 @@ function startGameTimer() {
   timer = setInterval(() => {
      if(remainingTimeSec <= 0 ) {
        clearInterval(timer);
+       finishGame(CARROT_COUNT === score);
        return;
      }
     updateTimerText(--remainingTimeSec);
@@ -79,6 +95,10 @@ function showPopUp(text) {
   popUp.classList.remove('pop-up__hide');
 }
 
+function hidePopUp() {
+  popUp.classList.add('pop-up__hide');
+}
+
 function updateTimerText(sec) {
   let minutes = Math.floor(sec / 60);
   let seconds = sec % 60;
@@ -95,6 +115,28 @@ function initGame() {
   gameScore.innerText = CARROT_COUNT;
   addItem('carrot', CARROT_COUNT, './../images/carrot.png');
   addItem('bug', BUG_COUNT, './../images/bug.png');
+}
+
+function onFieldClick(e) {
+  if(started == false) {
+    return;
+  }
+  const target = e.target;
+  if(target.matches('.carrot')) {
+    target.remove();
+    score++;
+    updateScoreBoard();
+    if(score == CARROT_COUNT) {
+      finishGame(true);
+    }
+  } else if(target.matches('.bug')) {
+    stopGameTimer();
+    finishGame(false);
+  }
+}
+
+function updateScoreBoard() {
+  gameScore.innerText = CARROT_COUNT - score;
 }
 
 function addItem(className, count, imgPath) {
