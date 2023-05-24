@@ -12,11 +12,13 @@ const gameBtn = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 
+const popUp = document.querySelector('.pop-up');
+const popUpMessage = document.querySelector('.pop-up__message');
+const popUpRefresh = document.querySelector('.pop-up__refresh');
+
 let started = false;
 let score = 0;
 let timer = undefined;
-
-
 
 // 게임 버튼 핸들러
 function handleGameBtn() {
@@ -36,7 +38,9 @@ function startGame() {
 }
 
 function stopGame() {
-  
+  stopGameTimer();
+  hideGameButton();
+  showPopUp('Replay? 😐');
 }
 
 function showStopButton() {
@@ -61,6 +65,19 @@ function startGameTimer() {
     updateTimerText(--remainingTimeSec);
   }, 1000);
 };
+
+function stopGameTimer() {
+  clearInterval(timer);
+}
+
+function hideGameButton() {
+  gameBtn.style.visibility = 'hidden';
+}
+
+function showPopUp(text) {
+  popUpMessage.innerText = text;
+  popUp.classList.remove('pop-up__hide');
+}
 
 function updateTimerText(sec) {
   let minutes = Math.floor(sec / 60);
