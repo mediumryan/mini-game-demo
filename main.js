@@ -1,17 +1,73 @@
 'use strict';
 
+const CARROT_SIZE = 80;
+const CARROT_COUNT = 5;
+const BUG_COUNT = 5;
+
 const game = document.querySelector('.game');
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
+const gameBtn = document.querySelector('.game__button');
+const gameTimer = document.querySelector('.game__timer');
+const gameScore = document.querySelector('.game__score');
 
+let started = false;
+let score = 0;
+let timer = undefined;
+
+
+
+// 게임 버튼 핸들러
+function handleGameBtn() {
+  if(started) {
+    stopGame();
+  } else {
+    startGame();
+  }
+  started = !started;
+}
+
+function startGame() {
+  initGame();
+  showStopButton();
+  showTimerAndScore();
+  startGameTimer();
+}
+
+function stopGame() {
+  
+}
+
+function showStopButton() {
+  const icon = gameBtn.querySelector('.fa-play');
+  icon.classList.add('fa-stop');
+  icon.classList.remove('fa-play');
+}
+
+function showTimerAndScore() {
+  gameTimer.style.visibility = 'visible';
+  gameScore.style.visibility = 'visible';
+}
+
+function startGameTimer() {
+  let interval = setInterval(() => {
+    return timer--;
+  }, 1000);
+}
+
+gameBtn.addEventListener('click', handleGameBtn);
+
+// 벌레, 당근을 생성 후 화면에 뿌려줌
 function initGame() {
-  // 벌레, 당근을 생성 후 화면에 뿌려줌
-  addItem('carrot', 5, './../images/carrot.png');
-  addItem('bug', 5, './../images/bug.png');
+  field.innerHTML = '';
+  gameScore.innerText = CARROT_COUNT;
+  timer = 10;
+  gameTimer.innerText = timer;
+  addItem('carrot', CARROT_COUNT, './../images/carrot.png');
+  addItem('bug', BUG_COUNT, './../images/bug.png');
 }
 
 function addItem(className, count, imgPath) {
-  const CARROT_SIZE = 80;
   const x1 = 0;
   const y1 = 0;
   const x2 = fieldRect.width - CARROT_SIZE;
@@ -32,5 +88,3 @@ function addItem(className, count, imgPath) {
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
-
-initGame();
