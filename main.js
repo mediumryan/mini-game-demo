@@ -3,6 +3,7 @@
 const CARROT_SIZE = 80;
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
+const GAME_DURATION_SEC = 5;
 
 const game = document.querySelector('.game');
 const field = document.querySelector('.game__field');
@@ -50,9 +51,23 @@ function showTimerAndScore() {
 }
 
 function startGameTimer() {
-  let interval = setInterval(() => {
-    return timer--;
+  let remainingTimeSec = GAME_DURATION_SEC;
+  updateTimerText(remainingTimeSec);
+  timer = setInterval(() => {
+     if(remainingTimeSec <= 0 ) {
+       clearInterval(timer);
+       return;
+     }
+    updateTimerText(--remainingTimeSec);
   }, 1000);
+};
+
+function updateTimerText(sec) {
+  let minutes = Math.floor(sec / 60);
+  let seconds = sec % 60;
+  minutes = String(minutes).padStart(2,'0');
+  seconds = String(seconds).padStart(2,'0');
+  gameTimer.innerText = `${minutes}:${seconds}`;
 }
 
 gameBtn.addEventListener('click', handleGameBtn);
@@ -61,8 +76,6 @@ gameBtn.addEventListener('click', handleGameBtn);
 function initGame() {
   field.innerHTML = '';
   gameScore.innerText = CARROT_COUNT;
-  timer = 10;
-  gameTimer.innerText = timer;
   addItem('carrot', CARROT_COUNT, './../images/carrot.png');
   addItem('bug', BUG_COUNT, './../images/bug.png');
 }
