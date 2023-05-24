@@ -57,7 +57,8 @@ function makeBug() {
   container.appendChild(bug);
   getRandomPosition(bug);
   // 벌레 클릭 시 게임 오버
-  bug.addEventListener('click', () => {
+  bug.addEventListener('click', (e) => {
+    console.dir(e.target)
     if(failCounter > 0) {
       failCounter--;
     }
@@ -80,6 +81,11 @@ function makeCarrot() {
 modal.style.display = 'none';
 function handleStartBtn() {
   var time = 10;
+  // 만일 화면에 벌레가 있다면, 모든 벌레와 당근을 제거(화면 초기화)
+  const bugs = document.querySelectorAll('.bug');
+  const carrots = document.querySelectorAll('.carrot');
+  bugs.forEach(bug => bug.remove());
+  carrots.forEach(carrot => carrot.remove());
   // 당근, 벌레 각 10개씩 화면에 무작위 배치
   for(i=0;i<10;i++) {
     makeCarrot();
