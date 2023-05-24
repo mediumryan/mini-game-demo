@@ -9,6 +9,8 @@ const modalP = document.querySelector('.modal_p');
 // 전역변수
 var counterNum = 10;
 var failCounter = 2;
+// 오디오 변수 선언
+const bgm = new Audio('./../sound/bg.mp3');
 
 // 재시작 버튼 핸들러
 function handleRestart() {
@@ -80,6 +82,7 @@ function makeCarrot() {
 // 시작버튼 핸들러
 modal.style.display = 'none';
 function handleStartBtn() {
+  bgm.play(); // 배경음악 추가.
   var time = 10;
   // 만일 화면에 벌레가 있다면, 모든 벌레와 당근을 제거(화면 초기화)
   const bugs = document.querySelectorAll('.bug');
@@ -105,14 +108,17 @@ function handleStartBtn() {
     if(time < 1) {
       // ** 타이머가 숫자가 00:00이 되면 실패 모달 띄우기 **
       fail(handleTimer);
+      bgm.pause();
     }
     // 당근 모두 클릭 성공했을 시, 타이머 중지.
     if(counterNum == 0) {
       clearInterval(handleTimer);
+      bgm.pause();
     }
     // 경고 카운터가 0 이하일 경우 게임 실패.
     if(failCounter == 0) {
       fail(handleTimer);
+      bgm.pause();
     }
   }, 1000);
 }
