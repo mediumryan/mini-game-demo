@@ -37,6 +37,8 @@ function handleGameBtn() {
 }
 
 popUpRefresh.addEventListener('click', () => {
+  score = 0;
+  showGameButton();
   startGame();
   hidePopUp();
 });
@@ -50,6 +52,7 @@ function startGame() {
 }
 
 function stopGame() {
+  bgm.pause();
   started = false;
   stopGameTimer();
   hideGameButton();
@@ -95,6 +98,10 @@ function startGameTimer() {
 
 function stopGameTimer() {
   clearInterval(timer);
+}
+
+function showGameButton() {
+  gameBtn.style.visibility = 'visible';
 }
 
 function hideGameButton() {
