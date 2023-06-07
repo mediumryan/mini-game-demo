@@ -132,8 +132,8 @@ function initGame() {
   bgm.play();
   field.innerHTML = '';
   gameScore.innerText = CARROT_COUNT;
-  addItem('carrot', CARROT_COUNT, '../images/carrot.png');
-  addItem('bug', BUG_COUNT, '../images/bug.png');
+  addItem('carrot', CARROT_COUNT, './images/carrot.png');
+  addItem('bug', BUG_COUNT, './images/bug.png');
 }
 
 function onFieldClick(e) {
