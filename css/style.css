@@ -1,12 +1,47 @@
+:root {
+  /* color */
+  --primary-100: #ee1d52;
+  --primary-200: #ff607e;
+  --primary-300: #ffcddf;
+  --accent-100: #ffc107;
+  --accent-200: #916400;
+  --text-100: #333333;
+  --text-200: #5c5c5c;
+  --bg-100: #f7f7f7;
+  --bg-200: #ededed;
+  --bg-300: #c4c4c4;
+  /* font-size */
+  --font-size-large: 48px;
+  --font-size-medium-large: 36px;
+  --font-size-medium: 28px;
+  /* margin */
+  --margin-size-large: 40px;
+  --margin-size-small: 8px;
+  /* padding */
+  --padding-size-large: 40px;
+  --padding-size-medium-large: 20px;
+  --padding-size-medium: 12px;
+  --padding-size-small: 8px;
+  /* animation */
+  --animation-duration: 300ms;
+}
+
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   text-align: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -16,28 +51,27 @@ button {
 }
 
 .game {
-  width : 800px;
-  height : 500px;
+  width: 800px;
+  height: 500px;
   background: url(../images/background.png) center/cover;
   display: flex;
   flex-direction: column;
-  margin : auto;
-  border-radius : 20px;
+  border-radius: 20px;
 }
 
 .game__header {
-  display : flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: var(--padding-size-medium-large);
 }
 
 .game__button {
-  width : 60px;
-  height : 60px;
-  background-color: wheat;
-  border: 4px solid black;
-  font-size: 24px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-100);
+  border: 4px solid var(--text-100);
+  font-size: var(--font-size-medium);
   transition: transform 300ms ease-in;
 }
 
@@ -46,68 +80,98 @@ button {
 }
 
 .game__timer {
-  width : 100px;
-  background-color: white;
+  width: 100px;
+  background-color: var(--bg-200);
   text-align: center;
-  border: 5px solid black;
-  border-radius : 20px;
-  font-size: 32px;
-  margin-top: 8px;
-  visibility : hidden;
+  border: 5px solid var(--text-100);
+  border-radius: 20px;
+  font-size: var(--font-size-medium-large);
+  margin-top: var(--margin-size-small);
+  padding: var(--padding-size-small) var(--padding-size-medium);
+  visibility: hidden;
 }
 
 .game__score {
   text-align: center;
-  width : 50px;
-  height : 50px;
-  font-size: 46px;
-  background-color : darksalmon;
-  border: 3px solid black;
+  width: 50px;
+  height: 50px;
+  font-size: var(--font-size-large);
+  background-color: var(--primary-200);
+  border: 3px solid var(--text-100);
   border-radius: 50%;
-  color: white;
-  margin-top: 8px;
-  visibility : hidden;
+  color: var(--text-100);
+  margin-top: var(--margin-size-small);
+  visibility: hidden;
 }
 
 .game__field {
   width: 100%;
-  height : 100%;
-  margin-top : 40px;
-  position : relative;
+  height: 100%;
+  margin-top: var(--margin-size-large);
+  position: relative;
 }
 
-.carrot:hover, .bug:hover {
-  transform : scale(1.1);
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
 }
 
 .pop-up {
-  display : block;
-  width : 400px;
-  height : 140px;
-  padding: 20px;
-  opacity: .7;
-  background-color: #000007;
-  color : white;
+  display: block;
+  width: 400px;
+  height: 170px;
+  padding: var(--padding-size-large);
+  opacity: 0.95;
+  background-color: var(--text-100);
+  color: var(--bg-100);
   text-align: center;
-  margin : auto;
+  margin: auto;
   border-radius: 20px;
-  transform: translateY(-150%);
+  transform: translateY(-50%);
 }
 
 .pop-up__hide {
-  display : none;
+  display: none;
 }
 
 .pop-up__refresh {
-  width : 60px;
-  height : 60px;
-  font-size : 24px;
-  background-color: wheat;
-  border: 2px solid black;
-  border-radius : 50%;
+  width: 60px;
+  height: 60px;
+  font-size: var(--font-size-medium-large);
+  background-color: var(--primary-100);
+  border: 2px solid var(--text-100);
+  border-radius: 50%;
 }
 
-  .pop-up__message {
-    display: block;
-    font-size : 38px;
+.pop-up__message {
+  display: block;
+  font-size: var(--font-size-medium-large);
+}
+
+@media screen and (max-width: 916px) {
+  :root {
+    /* font-size */
+    --font-size-large: 36px;
+    --font-size-medium-large: 28px;
+    --font-size-medium: 20px;
+    /* margin */
+    --margin-size-large: 20px;
+    --margin-size-small: 4px;
+    /* padding */
+    --padding-size-large: 20px;
+    --padding-size-medium-large: 10px;
+    --padding-size-medium: 6px;
+    --padding-size-small: 4px;
   }
+  body {
+    margin: 0;
+  }
+  .game {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  .game__score {
+    line-height: 1.5;
+  }
+}

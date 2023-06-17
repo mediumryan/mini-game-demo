@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>My First Mini Game</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link href="css/reset.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <section class="game">
-    <header class="game__header">
-      <button class="game__button">
-        <i class="fa-solid fa-play"></i>
-      </button>
-      <span class="game__timer">00:00</span>
-      <span class="game__score">9</span>
-    </header>
-    <section class="game__field">
-      
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>My First Mini Game</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <section class="game">
+      <header class="game__header">
+        <button class="game__button">
+          <i class="fa-solid fa-play"></i>
+        </button>
+        <span class="game__timer">00:00</span>
+        <span class="game__score">9</span>
+      </header>
+      <section class="game__field"></section>
+      <section class="pop-up pop-up__hide">
+        <button class="pop-up__refresh">
+          <i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
+        <span class="pop-up__message">Hello</span>
+      </section>
     </section>
-  </section>
-  <section class="pop-up pop-up__hide">
-    <button class="pop-up__refresh">
-      <i class="fa-solid fa-arrow-rotate-right"></i>
-    </button>
-    <span class="pop-up__message">Hello</span>
-  </section>
 
-
-  
-  <script src="main.js" defer></script>
-  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
-</body>
-
+    <script src="main.js" defer></script>
+  </body>
 </html>
