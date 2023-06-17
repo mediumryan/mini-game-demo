@@ -16,10 +16,10 @@ const popUp = document.querySelector(".pop-up");
 const popUpMessage = document.querySelector(".pop-up__message");
 const popUpRefresh = document.querySelector(".pop-up__refresh");
 
-const bgm = new Audio("../sound/bg.mp3");
-const soundWin = new Audio("../sound/game_win.mp3");
-const soundCarrot = new Audio("../sound/carrot_pull.mp3");
-const soundBug = new Audio("../sound/bug_pull.mp3");
+const bgm = new Audio("./sound/bg.mp3");
+const soundWin = new Audio("./sound/game_win.mp3");
+const soundCarrot = new Audio("./sound/carrot_pull.mp3");
+const soundBug = new Audio("./sound/bug_pull.mp3");
 
 let started = false;
 let score = 0;
