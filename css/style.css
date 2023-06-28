@@ -117,9 +117,12 @@ button {
 }
 
 .pop-up {
-  display: block;
-  width: 400px;
-  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 140px;
   padding: var(--padding-size-large);
   opacity: 0.95;
   background-color: var(--text-100);
@@ -128,6 +131,10 @@ button {
   margin: auto;
   border-radius: 20px;
   transform: translateY(-50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pop-up__hide {

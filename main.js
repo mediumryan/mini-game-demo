@@ -4,9 +4,8 @@ $(function () {
   const BUG_COUNT = 5;
   const GAME_DURATION_SEC = 5;
 
-  const game = $(".game");
   const field = $(".game__field");
-  const gameBtn = $(".game__button");
+  const gameBtn = document.querySelector(".game__button");
   const gameTimer = $(".game__timer");
   const gameScore = $(".game__score");
 
@@ -99,11 +98,11 @@ $(function () {
   }
 
   function showGameButton() {
-    gameBtn.css("visibility", "visible");
+    gameBtn.style.visibility = "visible";
   }
 
   function hideGameButton() {
-    gameBtn.css("visibility", "hidden");
+    gameBtn.style.visibility = "hidden";
   }
 
   function showPopUp(text) {
@@ -123,7 +122,7 @@ $(function () {
     gameTimer.text(`${minutes}:${seconds}`);
   }
 
-  gameBtn.on("click", handleGameBtn);
+  gameBtn.addEventListener("click", handleGameBtn);
 
   // 벌레, 당근을 생성 후 화면에 뿌려줌
   function initGame() {
@@ -161,11 +160,11 @@ $(function () {
   function addItem(className, count, imgPath) {
     const x1 = 0;
     const y1 = 0;
-    const x2 = field.width - CARROT_SIZE - 24;
-    const y2 = field.height - CARROT_SIZE - 24;
+    const x2 = field.width() - CARROT_SIZE - 24;
+    const y2 = field.height() - CARROT_SIZE - 24;
     for (let i = 0; i < count; i++) {
       const item = $("<img/>");
-      item.attr("class", className);
+      item.addClass(className);
       item.attr("src", imgPath);
       item.css("position", "absolute");
       const x = randomNumber(x1, x2);
