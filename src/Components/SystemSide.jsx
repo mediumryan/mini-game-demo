@@ -1,5 +1,9 @@
-import React from 'react';
+import { styled } from 'styled-components';
+
+const SystemSideWrapper = styled.div`
+    z-index: 2;
+`;
 
 export default function SystemSide() {
-    return <div>SystemSide</div>;
+    return <SystemSideWrapper>SystemSide</SystemSideWrapper>;
 }

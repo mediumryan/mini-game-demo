@@ -19,6 +19,7 @@ const Contents = styled.div`
     border-radius: 20px;
     display: grid;
     grid-template-rows: 4fr 3fr;
+    overflow: hidden;
 `;
 
 function App() {
