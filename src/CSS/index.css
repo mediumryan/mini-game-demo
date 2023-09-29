@@ -2,13 +2,16 @@
 
 :root {
     /* color */
-    --primary-100: #ff0000;
-    --accent-100: #3da6ff;
-    --text-100: #ffffff;
-    --text-200: #aaaaaa;
-    --bg-100: #0f0f0f;
-    --bg-200: #272727;
-    --bg-300: #535353;
+    --primary-100: #8b5fbf;
+    --primary-200: #61398f;
+    --accent-100: #d6c6e1;
+    --accent-200: #9a73b5;
+    --text-100: #4a4a4a;
+    --text-200: #878787;
+    --bg-100: #f5f3f7;
+    --bg-200: #e9e4ed;
+    --bg-300: #ffffff;
+
     /* font-size */
     --font-size-huge: 64px;
     --font-size-large: 48px;
