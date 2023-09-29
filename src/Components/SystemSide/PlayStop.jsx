@@ -12,7 +12,6 @@ const PlayButton = styled.button`
     border: 5px solid var(--primary-200);
     border-radius: 8px;
     font-size: var(--font-size-medium);
-    margin: var(--margin-medium) 0;
     padding: var(--padding-small) var(--padding-medium);
     transition: 150ms all;
     &:hover {
