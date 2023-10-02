@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { isPlayingState } from '../../atom';
 // icons
 import { FaPlay, FaStop } from 'react-icons/fa';
+import { FaArrowRotateRight } from 'react-icons/fa6';
 
 const PlayStopWrapper = styled.div``;
 
@@ -21,20 +22,38 @@ const PlayButton = styled.button`
 
 const StopButton = styled(PlayButton)``;
 
+const ReplayButton = styled(PlayButton)``;
+
 export default function PlayStop() {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
     return (
         <PlayStopWrapper>
             {isPlaying === 'none' ? (
-                <PlayButton>
+                <PlayButton
+                    onClick={() => {
+                        setIsPlaying('playing');
+                    }}
+                >
                     <FaPlay />
                 </PlayButton>
             ) : isPlaying === 'playing' ? (
-                <StopButton>
+                <StopButton
+                    onClick={() => {
+                        setIsPlaying('over');
+                    }}
+                >
                     <FaStop />
                 </StopButton>
-            ) : null}
+            ) : (
+                <ReplayButton
+                    onClick={() => {
+                        setIsPlaying('playing');
+                    }}
+                >
+                    <FaArrowRotateRight />
+                </ReplayButton>
+            )}
         </PlayStopWrapper>
     );
 }

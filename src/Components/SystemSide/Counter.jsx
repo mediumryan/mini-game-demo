@@ -1,14 +1,14 @@
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import { counterState } from '../../atom';
 import { SystemTimer } from './Timer';
+import { carrotCountState } from '../../atom';
 
 const SystemCounter = styled(SystemTimer)`
     margin: 0;
 `;
 
 export default function Counter() {
-    const [counter, setCounter] = useRecoilState(counterState);
+    const [carrotCount, setCarrotCount] = useRecoilState(carrotCountState);
 
-    return <SystemCounter>{counter}</SystemCounter>;
+    return <SystemCounter>{carrotCount}</SystemCounter>;
 }
