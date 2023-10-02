@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/mini-game-demo/static/css/main.332282a2.css",
+    "main.js": "/mini-game-demo/static/js/main.223d72fd.js",
+    "static/media/background.png": "/mini-game-demo/static/media/background.7f4588e5fb32f65d903c.png",
+    "index.html": "/mini-game-demo/index.html",
+    "main.332282a2.css.map": "/mini-game-demo/static/css/main.332282a2.css.map",
+    "main.223d72fd.js.map": "/mini-game-demo/static/js/main.223d72fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.332282a2.css",
+    "static/js/main.223d72fd.js"
+  ]
+}
