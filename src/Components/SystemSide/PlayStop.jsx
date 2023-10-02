@@ -1,6 +1,6 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import { isPlayingState } from '../../atom';
+import { isPlayingState, timerState } from '../../atom';
 // icons
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { FaArrowRotateRight } from 'react-icons/fa6';
@@ -26,10 +26,11 @@ const ReplayButton = styled(PlayButton)``;
 
 export default function PlayStop() {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+    const setTimer = useSetRecoilState(timerState);
 
     return (
         <PlayStopWrapper>
-            {isPlaying === 'none' ? (
+            {(isPlaying === 'none') | (isPlaying === 'win') ? (
                 <PlayButton
                     onClick={() => {
                         setIsPlaying('playing');
@@ -41,19 +42,12 @@ export default function PlayStop() {
                 <StopButton
                     onClick={() => {
                         setIsPlaying('over');
+                        setTimer(10);
                     }}
                 >
                     <FaStop />
                 </StopButton>
-            ) : (
-                <ReplayButton
-                    onClick={() => {
-                        setIsPlaying('playing');
-                    }}
-                >
-                    <FaArrowRotateRight />
-                </ReplayButton>
-            )}
+            ) : null}
         </PlayStopWrapper>
     );
 }

@@ -19,7 +19,7 @@ export const rectHeight = atom({
 // playing
 export const isPlayingState = atom({
     key: 'is_playing_state',
-    default: 'none', // 'none' | 'playing' | 'over'
+    default: 'none', // 'none' | 'playing' | 'over' | 'win'
 });
 // timer
 export const timerState = atom({

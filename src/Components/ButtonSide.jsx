@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import {
     bugCountState,
@@ -7,6 +7,7 @@ import {
     isPlayingState,
     rectHeight,
     rectWidth,
+    timerState,
 } from '../atom';
 import BUG from './../Images/bug.png';
 import CARROT from './../Images/carrot.png';
@@ -62,7 +63,10 @@ const ButtonSide = () => {
     const [carrotCount, setCarrotCount] = useRecoilState(carrotCountState);
 
     // 플레이 상태
-    const isPlay = useRecoilValue(isPlayingState);
+    const [isPlay, setIsPlay] = useRecoilState(isPlayingState);
+
+    // 타이머
+    const setTimer = useSetRecoilState(timerState);
 
     return (
         <ButtonSideWrapper ref={elementRef}>
@@ -76,8 +80,9 @@ const ButtonSide = () => {
                     left={getRandomCoordinate(width - 50)}
                     play={isPlay}
                     onClick={(e) => {
-                        console.log('bug');
-                        console.dir(e.target);
+                        setIsPlay('over');
+                        setTimer(10);
+                        setCarrotCount(5);
                     }}
                 />
             ))}
@@ -92,6 +97,12 @@ const ButtonSide = () => {
                     play={isPlay}
                     onClick={(e) => {
                         // carrotCount를 1 줄이기
+                        if (carrotCount === 1) {
+                            setIsPlay('win');
+                            setTimer(10);
+                            setCarrotCount(5);
+                            return;
+                        }
                         setCarrotCount((prevCount) => prevCount - 1);
                     }}
                 />
