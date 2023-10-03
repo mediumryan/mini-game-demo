@@ -29,15 +29,7 @@ const Bug = styled.img`
     cursor: pointer;
 `;
 
-const Carrot = styled.img`
-    display: ${(props) => (props.play === 'playing' ? 'block' : 'none')};
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: ${(props) => props.top}px;
-    left: ${(props) => props.left}px;
-    cursor: pointer;
-`;
+const Carrot = styled(Bug)``;
 
 const ButtonSide = () => {
     const elementRef = useRef(null);
@@ -79,7 +71,7 @@ const ButtonSide = () => {
                     top={getRandomCoordinate(height - 50)}
                     left={getRandomCoordinate(width - 50)}
                     play={isPlay}
-                    onClick={(e) => {
+                    onClick={() => {
                         setIsPlay('over');
                         setTimer(10);
                         setCarrotCount(5);
@@ -95,7 +87,7 @@ const ButtonSide = () => {
                     top={getRandomCoordinate(height - 50)}
                     left={getRandomCoordinate(width - 50)}
                     play={isPlay}
-                    onClick={(e) => {
+                    onClick={() => {
                         // carrotCount를 1 줄이기
                         if (carrotCount === 1) {
                             setIsPlay('win');
