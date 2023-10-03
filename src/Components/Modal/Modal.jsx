@@ -26,6 +26,9 @@ const ModalWrapper = styled.div`
     p {
         font-size: var(--font-size-medium);
     }
+    @media (min-width: 1180px) and (min-height: 820px) {
+        height: 35%;
+    }
 `;
 
 const ModalRetry = styled.button`

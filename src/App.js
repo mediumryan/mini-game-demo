@@ -15,9 +15,8 @@ const MainWrapper = styled.div`
 
 const Contents = styled.div`
     position: relative;
-    width: 75%;
-    height: 75%;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-rows: 4fr 3fr;
     overflow: hidden;

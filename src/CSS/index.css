@@ -82,7 +82,7 @@ body {
     }
 }
 /* Media query --- tablet */
-@media only screen and (max-width: 1180px) {
+@media (min-width: 1180px) and (min-height: 820px) {
     :root {
         /* font-size */
         --font-size-huge: 48px;
