@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+// import components
 import Background from './Components/Background';
 import SystemSide from './Components/SystemSide/SystemSide';
 import ButtonSide from './Components/ButtonSide';
