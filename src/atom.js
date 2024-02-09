@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil';
 
-// button side Rect
+// rect of the buttonSide
 export const rectWidth = atom({
     key: 'rect_width',
     default: 0,
@@ -15,6 +15,13 @@ export const randWidth = selector({
 export const rectHeight = atom({
     key: 'rect_height',
     default: 0,
+});
+export const randHeight = selector({
+    key: 'random_height',
+    get: ({ get }) => {
+        const height = get(rectHeight);
+        return Math.random() * height;
+    },
 });
 // playing
 export const isPlayingState = atom({

@@ -45,5 +45,5 @@ export default function Timer() {
         };
     }, [isPlay, setTimer, setIsPlay, timer]);
 
-    return <TimerCounter>00:{timer}</TimerCounter>;
+    return <TimerCounter>00:{timer.toString().padStart(2, '0')}</TimerCounter>;
 }

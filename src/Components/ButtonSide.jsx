@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+// import state data
 import {
     bugCountState,
     carrotCountState,
@@ -9,14 +10,15 @@ import {
     rectWidth,
     timerState,
 } from '../atom';
+// import images
 import BUG from './../Images/bug.png';
 import CARROT from './../Images/carrot.png';
 
 const ButtonSideWrapper = styled.div`
-    z-index: 2;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 75%;
+    background-color: red;
 `;
 
 const Bug = styled.img`
