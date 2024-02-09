@@ -1,46 +1,46 @@
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+// import state data
 import { isPlayingState, timerState } from '../../atom';
+// import icons
 import { FaArrowRotateRight } from 'react-icons/fa6';
 import { ImHappy2, ImSad2 } from 'react-icons/im';
 
 const ModalWrapper = styled.div`
     position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-    height: 50%;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: var(--bg-300);
-    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: ${(props) =>
         props.play === 'playing' || props.play === 'none' ? 'none' : 'flex'};
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
-    span {
-        font-size: var(--font-size-large);
-    }
-    p {
-        font-size: var(--font-size-medium);
-    }
-    @media (min-width: 1180px) and (min-height: 820px) {
-        height: 35%;
-    }
+    color: var(--bg-100);
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+`;
+
+const ModalInner = styled.div`
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 3px solid white;
+    font-size: 1.25rem;
 `;
 
 const ModalRetry = styled.button`
-    color: var(--text-100);
-    background-color: var(--bg-300);
-    border-radius: 8px;
-    font-size: var(--font-size-medium-large);
-    padding: var(--padding-small) var(--padding-medium);
-    margin-top: var(--margin-medium-large);
-    transition: 150ms all;
+    color: var(--bg-100);
+    font-size: 1.5rem;
+    padding: 1rem;
+    transition: 300ms all;
     &:hover {
         transform: scale(1.05);
+        color: var(--accent-100);
     }
 `;
 
@@ -50,28 +50,28 @@ export default function Modal() {
 
     return (
         <ModalWrapper play={isPlay}>
-            <span>
-                {isPlay === 'over' ? (
-                    <ImSad2 />
-                ) : isPlay === 'win' ? (
-                    <ImHappy2 />
-                ) : null}
-            </span>
-            <p>
-                {isPlay === 'over'
-                    ? 'You fail, wanna retry?'
-                    : isPlay === 'win'
-                    ? 'You Win! Congratulation!'
-                    : null}
-            </p>
-            <ModalRetry
-                onClick={() => {
-                    setIsPlay('playing');
-                    setTimer(10);
-                }}
-            >
-                <FaArrowRotateRight />
-            </ModalRetry>
+            <ModalInner>
+                <p className="modal_emoji">
+                    {isPlay === 'over' ? (
+                        <ImSad2 />
+                    ) : (
+                        isPlay === 'win' && <ImHappy2 />
+                    )}
+                </p>
+                <p className="modal_message">
+                    {isPlay === 'over'
+                        ? 'Failed, wanna retry again?'
+                        : isPlay === 'win' && 'Success. Congratulations!'}
+                </p>
+                <ModalRetry
+                    onClick={() => {
+                        setIsPlay('playing');
+                        setTimer(10);
+                    }}
+                >
+                    <FaArrowRotateRight />
+                </ModalRetry>
+            </ModalInner>
         </ModalWrapper>
     );
 }

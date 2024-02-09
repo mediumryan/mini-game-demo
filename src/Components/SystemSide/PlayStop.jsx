@@ -7,7 +7,6 @@ import { FaPlay, FaStop } from 'react-icons/fa';
 
 const Button = styled.button`
     color: var(--accent-100);
-    border-radius: 8px;
     font-size: 1.25rem;
     padding: 0.25rem 0.5rem;
     margin-bottom: 0.5rem;

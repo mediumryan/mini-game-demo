@@ -8,5 +8,9 @@ import { carrotCountState } from '../../atom';
 export default function Counter() {
     const [carrotCount, setCarrotCount] = useRecoilState(carrotCountState);
 
-    return <TimerCounter>{carrotCount}</TimerCounter>;
+    return (
+        <TimerCounter style={{ color: carrotCount === 1 && '#61398f' }}>
+            {carrotCount}
+        </TimerCounter>
+    );
 }

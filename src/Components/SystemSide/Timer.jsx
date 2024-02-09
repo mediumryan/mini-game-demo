@@ -7,6 +7,7 @@ import { carrotCountState, isPlayingState, timerState } from '../../atom';
 export const TimerCounter = styled.span`
     color: var(--text-100);
     font-size: 1.15rem;
+    font-weight: 700;
     margin: 0.5rem;
 `;
 
@@ -45,5 +46,9 @@ export default function Timer() {
         };
     }, [isPlay, setTimer, setIsPlay, timer]);
 
-    return <TimerCounter>00:{timer.toString().padStart(2, '0')}</TimerCounter>;
+    return (
+        <TimerCounter style={{ color: timer < 4 && 'red' }}>
+            00:{timer.toString().padStart(2, '0')}
+        </TimerCounter>
+    );
 }

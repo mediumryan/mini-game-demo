@@ -18,7 +18,6 @@ const ButtonSideWrapper = styled.div`
     position: relative;
     width: 100%;
     height: 75%;
-    background-color: red;
 `;
 
 const Bug = styled.img`
