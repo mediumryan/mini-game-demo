@@ -1,17 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+// import state data
 import { carrotCountState, isPlayingState, timerState } from '../../atom';
 
-export const SystemTimer = styled.span`
+export const TimerCounter = styled.span`
     color: var(--text-100);
-    background-color: var(--bg-200);
-    font-size: var(--font-size-medium);
-    padding: var(--padding-double-medium);
-    margin: var(--margin-medium-large) 0;
-    border: 5px solid var(--primary-200);
-    border-radius: 8px;
-    cursor: default;
+    font-size: 1.15rem;
+    margin: 0.5rem;
 `;
 
 export default function Timer() {
@@ -49,5 +45,5 @@ export default function Timer() {
         };
     }, [isPlay, setTimer, setIsPlay, timer]);
 
-    return <SystemTimer>00:{timer}</SystemTimer>;
+    return <TimerCounter>00:{timer}</TimerCounter>;
 }
