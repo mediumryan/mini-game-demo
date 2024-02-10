@@ -9,7 +9,7 @@ const SystemSideWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 1rem 2rem;
-    margin-top: 5rem;
+    margin: 5rem 0 15rem 0;
     background-color: var(--bg-100);
     border-radius: 10px;
 `;

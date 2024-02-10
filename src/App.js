@@ -13,7 +13,7 @@ const MainWrapper = styled.div`
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background: url(${bg}) center;
+    background: url(${bg}) center no-repeat;
     background-size: cover;
 `;
 
