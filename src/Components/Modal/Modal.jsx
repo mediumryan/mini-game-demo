@@ -23,14 +23,24 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalInner = styled.div`
-    width: 400px;
-    height: 250px;
+    width: 30%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     border: 3px solid white;
     font-size: 1.25rem;
+    padding: 1rem;
+    & > p {
+        text-align: center;
+        line-height: 1.5;
+        letter-spacing: 2px;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 768px) {
+        width: 75%;
+        height: 25%;
+    }
 `;
 
 const ModalRetry = styled.button`
@@ -51,14 +61,14 @@ export default function Modal() {
     return (
         <ModalWrapper play={isPlay}>
             <ModalInner>
-                <p className="modal_emoji">
+                <p>
                     {isPlay === 'over' ? (
                         <ImSad2 />
                     ) : (
                         isPlay === 'win' && <ImHappy2 />
                     )}
                 </p>
-                <p className="modal_message">
+                <p>
                     {isPlay === 'over'
                         ? 'Failed, wanna retry again?'
                         : isPlay === 'win' && 'Success. Congratulations!'}
